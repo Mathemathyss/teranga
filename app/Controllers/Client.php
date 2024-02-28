@@ -46,7 +46,27 @@ class Client extends BaseController
 
     public function suppressionClientForm(): string
     {
-        return view('Client/suppression-client');
+        // Récupérer la liste des clients depuis la base de données
+        $clientModel = new \App\Models\Clients();
+        $clientsList = $clientModel->findAll();
+
+        return view('Client/suppression-client', ['clientsList' => $clientsList]);
+    }
+
+    public function suppressionClient(): string
+    {
+        $data = $this->request->getVar();
+
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
+
+        $clientModel = new \App\Models\Clients();
+        $clientModel->delete($data);
+        // Préparer la requête SQL de suppression
+        // $sql = "DELETE FROM Clients WHERE ClientID='$clientID'";
+
+        return view('Client/gestion-client');
     }
 
     public function listeClient(): string
