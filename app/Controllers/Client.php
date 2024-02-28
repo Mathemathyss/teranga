@@ -18,9 +18,9 @@ class Client extends BaseController
     {
         $data = $this->request->getVar();
 
-        print('<pre>');
-        print_r($data);
-        print('</pre>');
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
 
         $clientModel = new \App\Models\Clients();
 
