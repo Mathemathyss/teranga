@@ -13,12 +13,12 @@ helper('html');
 <header>
     <a href="<?= base_url()?>">
     
+    
     <?php $imageProperties = [
     'src'    => 'inc/logo.png',
     'alt'    => 'Logo du site',
     'width'  => '100']; 
     echo img($imageProperties);?></a>
-    <!-- <img src="inc/logo.png" alt="Logo du site" width="100"></a> -->
     <a href="<?= base_url()?>" class="titresite">
         <h1>African Teranga</h1>
     </a>
@@ -36,7 +36,9 @@ helper('html');
 </header>
 
 <body>
+    <main>
     <?= $this->renderSection('contenu') ?>
+    </main>
 </body>
 <footer>
     <!-- Contenu du bas de la page (pied de page) -->
