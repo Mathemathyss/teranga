@@ -36,7 +36,7 @@ class Client extends BaseController
         // Préparer la requête SQL d'insertion
         // $sql = "INSERT INTO Clients (Nom, Prenom, Telephone, Email) VALUES ('$nom', '$prenom', '$telephone', '$email')";
 
-        return view('Client/liste-client');
+        return view('Client/gestion-client');
     }
 
     public function modificationClientForm(): string
