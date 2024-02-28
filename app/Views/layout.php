@@ -12,25 +12,28 @@ helper('html');
 </head>
 <header>
     <a href="index.php"><img src="inc/logo.png" alt="Logo du site" width="100"></a>
-    <a href="index.php" class="titresite"><h1>African Teranga</h1></a>
-        <nav>
-            <ul>
-                <li><a href="gestion_client.php">Gestion Clients</a></li>
-                <li><a href="gestion_table.php">Gestion Tables</a></li>
-                <li><a href="gestion_article.php">Gestion Articles</a></li>
-                <li><a href="gestion_reservation.php">Gestion Réservations</a></li>
-                <li><a href="gestion_commande.php">Gestion Commandes</a></li>
-                <li><a href="index.php">Accueil</a></li>
-            </ul>
-        </nav>
-        <!-- Contenu du haut de la page (navigation, en-tête, etc.) -->
-    </header>
+    <a href="index.php" class="titresite">
+        <h1>African Teranga</h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="gestion_client.php">Gestion Clients</a></li>
+            <li><a href="gestion_table.php">Gestion Tables</a></li>
+            <li><a href="gestion_article.php">Gestion Articles</a></li>
+            <li><a href="gestion_reservation.php">Gestion Réservations</a></li>
+            <li><a href="gestion_commande.php">Gestion Commandes</a></li>
+            <li><a href="index.php">Accueil</a></li>
+        </ul>
+    </nav>
+    <!-- Contenu du haut de la page (navigation, en-tête, etc.) -->
+</header>
 
 <body>
-    <?= $this->renderSection('contenu')?>
+    <?= $this->renderSection('contenu') ?>
 </body>
 <footer>
     <!-- Contenu du bas de la page (pied de page) -->
     <p>&copy; 2024 Mon Site Web</p>
 </footer>
+
 </html>
