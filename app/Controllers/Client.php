@@ -39,9 +39,44 @@ class Client extends BaseController
         return view('Client/gestion-client');
     }
 
-    public function modificationClientForm(): string
+    public function modifierClientForm(): string
     {
-        return view('Client/modification-client');
+        // Récupérer la liste des clients depuis la base de données
+        $clientModel = new \App\Models\Clients();
+        $clientsList = $clientModel->findAll();
+
+        // $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
+
+
+
+        return view('Client/modification-client', ['clientsList' => $clientsList]);
+    }
+
+    public function modifierClient(): string
+    {
+        $data = $this->request->getVar();
+        $clientModel = new \App\Models\Clients();
+
+        print('<pre>');
+        print_r($data);
+        print('</pre>');
+
+        $id = $data['clientID'];
+
+        $donnees = [
+            'CLIENTID' => $data['clientID'],
+            'NOM' => $data['nom'],
+            'PRENOM' => $data['prenom'],
+            'TELEPHONE' => $data['telephone'],
+            'email' => $data['email']
+        ];
+        $clientModel->save($donnees);
+
+        //Préparer la requête SQL de mise à jour
+        // $sql = "UPDATE Clients SET Nom='$nom', Prenom='$prenom', Telephone='$telephone', Email='$email' WHERE ClientID='$clientID'";
+
+
+        return view('Client/gestion-client');
     }
 
     public function suppressionClientForm(): string
