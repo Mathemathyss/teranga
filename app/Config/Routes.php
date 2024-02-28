@@ -108,7 +108,5 @@ $routes->get('/suppression-commande', 'Commande::suppressionCommande', ['as' => 
 
 
 
-
-
 //page principale
 $routes->get('/', 'Home::index');
