@@ -85,8 +85,6 @@ $routes->get('/suppression-reservation', 'Reservation::suppressionReservationFor
 $routes->get('/suppression-reservation', 'Reservation::suppressionReservation', ['as' => 'Suppression_Reservation']);
 
 
-
-
 #--------------------------------------------------------------------
 # Commande
 #--------------------------------------------------------------------
