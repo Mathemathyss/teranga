@@ -6,7 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-//routes pour la page client
+#--------------------------------------------------------------------
+# CLIENT
+#--------------------------------------------------------------------
+
 $routes->get('/gestion-client', 'Client::index', ['as' => 'Gestion_Client']);
 $routes->get('/liste-client', 'Client::listeClient', ['as' => 'liste_client']);
 
@@ -23,7 +26,10 @@ $routes->get('/suppression-client', 'Client::suppressionClientForm', ['as' => 'S
 $routes->get('/suppression-client', 'Client::suppressionClient', ['as' => 'Suppression_Client']);
 
 
-//routes pour la page article
+#--------------------------------------------------------------------
+# ARTICLE
+#--------------------------------------------------------------------
+
 $routes->get('/gestion-article', 'Article::index', ['as' => 'Gestion_Article']);
 $routes->get('/liste-article', 'Article::listeArticle', ['as' => 'Liste_Article']);
 
@@ -39,7 +45,10 @@ $routes->get('/suppression-article', 'Article::suppressionArticleForm', ['as' =>
 //méthode de suppression en base de donnnée associée
 $routes->get('/suppression-article', 'Article::suppressionArticle', ['as' => 'Suppression_Article']);
 
-//routes pour la page table
+#--------------------------------------------------------------------
+# Table
+#--------------------------------------------------------------------
+
 $routes->get('/gestion-table', 'Table::index', ['as' => 'Gestion_Table']);
 $routes->get('/liste-table', 'Table::listeTable', ['as' => 'Liste_Table']);
 
@@ -56,15 +65,18 @@ $routes->get('/suppression-table', 'Table::suppressionTableForm', ['as' => 'Supp
 $routes->get('/suppression-table', 'Table::suppressionTable', ['as' => 'Suppression_Table']);
 
 
-//routes pour la page reservation
+#--------------------------------------------------------------------
+# Reservation
+#--------------------------------------------------------------------
 
 
 
 
 
 
-
-//routes pour la page commande
+#--------------------------------------------------------------------
+# Commande
+#--------------------------------------------------------------------
 
 
 
