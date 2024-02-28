@@ -91,6 +91,21 @@ $routes->get('/suppression-reservation', 'Reservation::suppressionReservation', 
 # Commande
 #--------------------------------------------------------------------
 
+$routes->get('/gestion-commande', 'Commande::index', ['as' => 'Gestion_Commande']);
+$routes->get('/liste-commande', 'Commande::listeCommande', ['as' => 'Liste_Commande']);
+
+$routes->get('/ajout-commande', 'Commande::ajouterCommandeForm', ['as' => 'Ajout_Commande_Form']);
+//méthode d'ajout en base de donnnée associée
+$routes->get('/ajout-commande', 'Commande::ajouterCommande', ['as' => 'Ajout_Commande']);
+
+$routes->get('/modification-commande', 'Commande::modifierCommandeForm', ['as' => 'Modification_Commande_Form']);
+//méthode de modification en base de donnnée associée
+$routes->get('/modification-commande', 'Commande::modifierCommande', ['as' => 'Modification_Commande']);
+
+$routes->get('/suppression-commande', 'Commande::suppressionCommandeForm', ['as' => 'Suppression_Commande_Form']);
+//méthode de suppression en base de donnnée associée
+$routes->get('/suppression-commande', 'Commande::suppressionCommande', ['as' => 'Suppression_Commande']);
+
 
 
 
