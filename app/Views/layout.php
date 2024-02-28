@@ -17,11 +17,11 @@ helper('html');
     </a>
     <nav>
         <ul>
-            <li><a href="gestion_client.php">Gestion Clients</a></li>
-            <li><a href="gestion_table.php">Gestion Tables</a></li>
-            <li><a href="gestion_article.php">Gestion Articles</a></li>
-            <li><a href="gestion_reservation.php">Gestion Réservations</a></li>
-            <li><a href="gestion_commande.php">Gestion Commandes</a></li>
+            <li><a href="<?= url_to('Gestion_Client')?>">Gestion Clients</a></li>
+            <li><a href="<?= url_to('Gestion_Table')?>">Gestion Tables</a></li>
+            <li><a href="<?= url_to('Gestion_Article')?>">Gestion Articles</a></li>
+            <li><a href="<?= url_to('Gestion_Reservation')?>">Gestion Réservations</a></li>
+            <li><a href="<?= url_to('Gestion_Commande')?>">Gestion Commandes</a></li>
             <li><a href="<?= base_url()?>">Accueil</a></li>
         </ul>
     </nav>
