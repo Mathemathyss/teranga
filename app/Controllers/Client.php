@@ -51,6 +51,8 @@ class Client extends BaseController
 
     public function listeClient(): string
     {
-        return view('Client/liste-client');
+        $clientModel = new \App\Models\Clients();
+        $clientsList = $clientModel->findAll();
+        return view('Client/liste-client', ['clientsList' => $clientsList]);
     }
 }
