@@ -69,7 +69,20 @@ $routes->get('/suppression-table', 'Table::suppressionTable', ['as' => 'Suppress
 # Reservation
 #--------------------------------------------------------------------
 
+$routes->get('/gestion-reservation', 'Reservation::index', ['as' => 'Gestion_Reservation']);
+$routes->get('/liste-reservation', 'Reservation::listeReservation', ['as' => 'Liste_Reservation']);
 
+$routes->get('/ajout-reservation', 'Reservation::ajouterReservationForm', ['as' => 'Ajout_Reservation_Form']);
+//méthode d'ajout en base de donnnée associée
+$routes->get('/ajout-reservation', 'Reservation::ajouterReservation', ['as' => 'Ajout_Reservation']);
+
+$routes->get('/modification-reservation', 'Reservation::modifierReservationForm', ['as' => 'Modification_Reservation_Form']);
+//méthode de modification en base de donnnée associée
+$routes->get('/modification-reservation', 'Reservation::modifierReservation', ['as' => 'Modification_Reservation']);
+
+$routes->get('/suppression-reservation', 'Reservation::suppressionReservationForm', ['as' => 'Suppression_Reservation_Form']);
+//méthode de suppression en base de donnnée associée
+$routes->get('/suppression-reservation', 'Reservation::suppressionReservation', ['as' => 'Suppression_Reservation']);
 
 
 

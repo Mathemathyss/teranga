@@ -1,0 +1,249 @@
+/* Style global pour le site */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5fe; /* Bleu clair */
+    color: #333; /* Couleur du texte principale */
+}
+
+header {
+    background-color: #001f3f; /* Bleu foncé */
+    color: #ffd700; /* Doré */
+    text-align: center; /* Centrer les éléments dans l'en-tête */
+    padding: 20px 0 0; /* Ajouter un espace autour du contenu de l'en-tête */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #004080; /* Bleu foncé */
+}
+
+nav li {
+    float: none; /* Annuler la flottaison pour centrer les éléments */
+    display: inline-block; /* Permettre aux éléments de se comporter comme des blocs en ligne */
+}
+
+nav a {
+    display: block;
+    color: #fff; /* Blanc */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #0066cc; /* Bleu moyen au survol */
+}
+
+main {
+    padding: 20px;
+    text-align: center; /* Centrer le texte à l'intérieur de la section principale */
+
+}
+main button {
+    margin: 10px; /* Ajouter un espacement autour de chaque bouton */
+}
+
+footer {
+    background-color: #001f3f; /* Bleu foncé */
+    color: #fff; /* Blanc */
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style spécifique pour les boutons */
+button {
+    background-color: #004080; /* Bleu foncé */
+    color: #fff; /* Blanc */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0066cc; /* Bleu moyen au survol */
+}
+
+
+/* Style pour les formulaires */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333; /* Couleur du texte principale */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px;
+}
+
+input[type="submit"],
+button {
+    background-color: #004080; /* Bleu foncé */
+    color: #fff; /* Blanc */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #0066cc; /* Bleu moyen au survol */
+}
+
+/* Style pour les messages d'erreur */
+.error-message {
+    color: #ff0000; /* Rouge */
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Style pour les messages de succès */
+.success-message {
+    color: #008000; /* Vert foncé */
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+/* Style pour le tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Espacement au-dessus du tableau */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Bordures de cellule */
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #004080; /* Bleu foncé pour les en-têtes */
+    color: #fff; /* Texte blanc pour les en-têtes */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+}
+
+/* Ajoute un style au survol des lignes */
+tr:hover {
+    background-color: #cce5ff; /* Bleu clair au survol */
+}
+
+
+
+h2 {
+    color: #004080; /* Bleu foncé */
+}
+
+p {
+    margin-bottom: 20px;
+}
+main {
+    text-align: center;
+    padding: 20px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/* attention  */
+
+/* Ajoutez ces styles pour personnaliser index.php */
+
+/* Style pour la section d'accueil */
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Conteneur pour les boutons */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Style pour chaque bouton */
+.button-link {
+    display: inline-block;
+    width: 30%; /* Ajustez la largeur selon vos préférences */
+    margin: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Style pour l'image en fond */
+.button-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Style pour le texte sur le bouton */
+.button-link .button-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; /* Blanc */
+    font-size: 18px; /* Ajustez la taille du texte selon vos préférences */
+    font-weight: bold;
+}
+/* Style pour l'image en fond */
+.button-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(60%) contrast(120%); /* Ajustez les valeurs selon vos préférences */
+}
+
+
+/* Ajout de marge autour du contenu principal */
+main {
+    margin: 20px;
+}
+
+
+.titresite {
+    color: #eeff00; /* Couleur du texte rouge pour le lien spécial */
+    font-weight: bold; /* Texte en gras */
+    text-decoration: none;
+    /* Ajoutez d'autres styles spécifiques au lien spécial ici */
+}
+
+

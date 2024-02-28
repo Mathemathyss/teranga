@@ -11,8 +11,8 @@ helper('html');
     <title>African Teranga</title>
 </head>
 <header>
-    <a href="index.php"><img src="inc/logo.png" alt="Logo du site" width="100"></a>
-    <a href="index.php" class="titresite">
+    <a href="<?= base_url()?>"><img src="inc/logo.png" alt="Logo du site" width="100"></a>
+    <a href="<?= base_url()?>" class="titresite">
         <h1>African Teranga</h1>
     </a>
     <nav>
@@ -22,7 +22,7 @@ helper('html');
             <li><a href="gestion_article.php">Gestion Articles</a></li>
             <li><a href="gestion_reservation.php">Gestion Réservations</a></li>
             <li><a href="gestion_commande.php">Gestion Commandes</a></li>
-            <li><a href="index.php">Accueil</a></li>
+            <li><a href="<?= base_url()?>">Accueil</a></li>
         </ul>
     </nav>
     <!-- Contenu du haut de la page (navigation, en-tête, etc.) -->
