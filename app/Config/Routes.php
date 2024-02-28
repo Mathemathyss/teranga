@@ -11,7 +11,7 @@ use CodeIgniter\Router\RouteCollection;
 #--------------------------------------------------------------------
 
 $routes->get('/gestion-client', 'Client::index', ['as' => 'Gestion_Client']);
-$routes->get('/liste-client', 'Client::listeClient', ['as' => 'liste_client']);
+$routes->get('/liste-client', 'Client::listeClient', ['as' => 'Liste_Client']);
 
 $routes->get('/ajout-client', 'Client::ajouterClientForm', ['as' => 'Ajout_Client_Form']);
 //méthode d'ajout en base de donnnée associée
