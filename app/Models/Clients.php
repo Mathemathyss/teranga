@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Client extends Model
+class Clients extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'client';
+    protected $table            = 'clients';
     protected $primaryKey       = 'CLIENT_ID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

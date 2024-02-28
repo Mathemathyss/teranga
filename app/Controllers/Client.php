@@ -22,7 +22,7 @@ class Client extends BaseController
         print_r($data);
         print('</pre>');
 
-        $clientModel = new \App\Models\Client();
+        $clientModel = new \App\Models\Clients();
 
         // Récupérer les données du formulaire
         $clientModel->insert([
