@@ -9,6 +9,10 @@ class Client extends BaseController
         return view('Client/gestion-client');
     }
 
+    #--------------------------------------------------------------------
+    # AJOUT
+    #--------------------------------------------------------------------
+
     public function ajouterClientForm(): string
     {
         return view('Client/ajout-client');
@@ -38,6 +42,10 @@ class Client extends BaseController
 
         return view('Client/gestion-client');
     }
+
+    #--------------------------------------------------------------------
+    # MODIFICATION
+    #--------------------------------------------------------------------
 
     public function modifierClientForm(): string
     {
@@ -79,6 +87,10 @@ class Client extends BaseController
         return view('Client/gestion-client');
     }
 
+    #--------------------------------------------------------------------
+    # Suppression
+    #--------------------------------------------------------------------
+
     public function suppressionClientForm(): string
     {
         // Récupérer la liste des clients depuis la base de données
@@ -103,6 +115,10 @@ class Client extends BaseController
 
         return view('Client/gestion-client');
     }
+
+    #--------------------------------------------------------------------
+    # Lecture des infos
+    #--------------------------------------------------------------------
 
     public function listeClient(): string
     {
