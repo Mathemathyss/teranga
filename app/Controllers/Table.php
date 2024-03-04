@@ -85,6 +85,31 @@ class Table extends BaseController
     #--------------------------------------------------------------------
     # SUPPRESSION
     #--------------------------------------------------------------------
+    
+    public function suppressionTableForm(): string
+    {
+        // Récupérer la liste des clients depuis la base de données
+        $tableModel = new \App\Models\Tables();
+        $tableList = $tableModel->findAll();
+
+        return view('Table/suppression-table', ['tableList' => $tableList]);
+    }
+
+    public function suppressionTable(): string
+    {
+        $data = $this->request->getVar();
+
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
+
+        $tableModel = new \App\Models\Tables();
+        $tableModel->delete($data);
+        // Préparer la requête SQL de suppression
+        // $sql = "DELETE FROM Clients WHERE ClientID='$clientID'";
+
+        return view('table/gestion-table');
+    }
 
     #--------------------------------------------------------------------
     # LECTURE DE DONNEES
