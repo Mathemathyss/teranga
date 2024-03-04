@@ -43,6 +43,45 @@ class Table extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
+    public function modifierTableForm(): string
+    {
+        // Récupérer la liste des clients depuis la base de données
+        $tableModel = new \App\Models\Tables();
+        $tableList = $tableModel->findAll();
+
+        // $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
+
+
+
+        return view('Table/modification-table', ['tableList' => $tableList]);
+    }
+
+    public function modifierTable(): string
+    {
+        $data = $this->request->getVar();
+        $tableModel = new \App\Models\Tables();
+
+        print('<pre>');
+        print_r($data);
+        print('</pre>');
+
+        $id = $data['tableID'];
+
+        $donnees = [
+            'TABLEID' => $data['tableID'],
+            'NUMERO_DE_TABLE' => $data['numero_de_Table'],
+            'CAPACITE' => $data['capacite'],
+            'ETAT' => $data['etat']
+        ];
+        $tableModel->save($donnees);
+
+        //Préparer la requête SQL de mise à jour
+        // $sql = "UPDATE Clients SET Nom='$nom', Prenom='$prenom', Telephone='$telephone', Email='$email' WHERE ClientID='$clientID'";
+
+
+        return view('Table/gestion-table');
+    }
+
     #--------------------------------------------------------------------
     # SUPPRESSION
     #--------------------------------------------------------------------

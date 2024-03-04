@@ -65,9 +65,9 @@ class Client extends BaseController
         $data = $this->request->getVar();
         $clientModel = new \App\Models\Clients();
 
-        print('<pre>');
-        print_r($data);
-        print('</pre>');
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
 
         $id = $data['clientID'];
 
