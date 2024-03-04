@@ -45,7 +45,7 @@ class Table extends BaseController
 
     public function modifierTableForm(): string
     {
-        // Récupérer la liste des clients depuis la base de données
+        // Récupérer la liste des tables depuis la base de données
         $tableModel = new \App\Models\Tables();
         $tableList = $tableModel->findAll();
 
@@ -75,9 +75,7 @@ class Table extends BaseController
         ];
         $tableModel->save($donnees);
 
-        //Préparer la requête SQL de mise à jour
-        // $sql = "UPDATE Clients SET Nom='$nom', Prenom='$prenom', Telephone='$telephone', Email='$email' WHERE ClientID='$clientID'";
-
+        
 
         return view('Table/gestion-table');
     }
@@ -88,7 +86,7 @@ class Table extends BaseController
     
     public function suppressionTableForm(): string
     {
-        // Récupérer la liste des clients depuis la base de données
+        // Récupérer la liste des tables depuis la base de données
         $tableModel = new \App\Models\Tables();
         $tableList = $tableModel->findAll();
 
@@ -105,8 +103,6 @@ class Table extends BaseController
 
         $tableModel = new \App\Models\Tables();
         $tableModel->delete($data);
-        // Préparer la requête SQL de suppression
-        // $sql = "DELETE FROM Clients WHERE ClientID='$clientID'";
 
         return view('table/gestion-table');
     }
