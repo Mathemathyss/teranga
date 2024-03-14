@@ -1,0 +1,39 @@
+    #--------------------------------------------------------------------
+    # RECHERCHER
+    #--------------------------------------------------------------------
+// // Fonction de recherche
+// function rechercherReservations($term)
+// {
+//     global $conn;
+
+//     // Échapper les caractères spéciaux pour éviter les injections SQL
+//     $term = mysqli_real_escape_string($conn, $term);
+
+//     // Requête de recherche
+//     $sql = "SELECT r.*, c.Nom as NomClient, c.Prenom as PrenomClient, GROUP_CONCAT(t.Numero_de_Table) as TablesAssociees
+//             FROM RESERVATION r 
+//             JOIN CLIENTS c ON r.ClientID = c.CLIENTID 
+//             LEFT JOIN TABLE_RESERVE tr ON r.RESERVATIONID = tr.RESERVATIONID
+//             LEFT JOIN TABLES t ON tr.TABLEID = t.TABLEID
+//             WHERE c.Nom LIKE '%$term%' OR c.Prenom LIKE '%$term%' 
+//             OR r.ClientID LIKE '%$term%' OR r.Date_Heure LIKE '%$term%' OR r.Nombre_de_Personne LIKE '%$term%'
+//             GROUP BY r.RESERVATIONID";
+
+//     $result = $conn->query($sql);
+
+//     return $result;
+// }
+// Récupérer le terme de recherche s'il existe
+// $term = isset($_GET['search']) ? $_GET['search'] : '';
+
+// // Si le formulaire de recherche est soumis
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     $term = $_POST['term'];
+// }
+
+// // Récupérer les résultats de recherche
+// $resultats = rechercherReservations($term);
+
+// // Fermer la connexion à la base de données
+// $conn->close();
+// 
