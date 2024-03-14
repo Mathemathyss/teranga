@@ -9,7 +9,7 @@
 // print('<pre>');
 // print_r($clientsList);
 // print('</pre>');
-
+if (!empty($clientsList)) {
 echo "<table>
             <thead>
                 <tr>
@@ -36,5 +36,8 @@ foreach ($clientsList as $client) {
 //     
 // }
 echo "</tbody></table>";
+} else {
+    echo "Aucune Table trouvé.";
+}
 ?>
 <?= $this->endSection() ?>

@@ -4,7 +4,7 @@
 <h2>Liste des Tables</h2>
 
 <?php
-
+if (!empty($tableList)) {
 echo "<table>
                 <thead>
                     <tr>
@@ -25,6 +25,9 @@ foreach ($tableList as $table) {
                 </tr>";
 }
 echo "</tbody></table>";
+} else {
+    echo "Aucune Table trouvé.";
+}
 
 ?>
 <?= $this->endSection() ?>
