@@ -43,22 +43,11 @@ class Reservation extends BaseController
 
     public function ajouterReservation(): string
     {
-
-
-        // Récupérer la liste des clients depuis la base de données
-        $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
-        
-
-        // Récupérer la liste des tables depuis la base de données
-        $sql_tables = "SELECT TableID, Numero_de_Table FROM Tables";
-
+        $reservModel = new \App\Models\Reservations();
+        $data = $this->request->getVar();
+        $tablesSelectionnees = $data['tablesSelectionnees'];
         // Vérifier si le formulaire est soumis
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer les données du formulaire
-            $clientID = $_POST['clientID'];
-            $dateHeureReservation = $_POST['dateHeureReservation'];
-            $nombrePersonnes = $_POST['nombrePersonnes'];
-            $tablesSelectionnees = isset($_POST['tablesSelectionnees']) ? $_POST['tablesSelectionnees'] : [];
+        
 
 
 
@@ -66,8 +55,23 @@ class Reservation extends BaseController
             // $tablesAttribuees = implode(",", $tablesSelectionnees);
 
             // Préparer la requête SQL d'insertion
+            //$sql = "INSERT INTO Reservation (ClientID, Date_Heure, Nombre_de_Personne) VALUES ('$clientID', '$dateHeureReservation', '$nombrePersonnes')";
+            $reservModel->insert([
+                'CLIENTID' => $data['clientID'],
+                'DATE_HEURE' => $data['dateHeureReservation'],
+                'NOMBRE_DE_PERSONNE' => $data['nombrePersonnes'],
+            ]);
 
-            $sql = "INSERT INTO Reservation (ClientID, Date_Heure, Nombre_de_Personne) VALUES ('$clientID', '$dateHeureReservation', '$nombrePersonnes')";
+            $lastID = $reservModel->getInsertID();
+
+            $tablereservModel = new \App\Models\TableReserve();
+
+            foreach ($data['tablesSelectionnees'] as $tableSelectionnee){
+                $tablereservModel->insert([
+                    'TABLEID' => $tableSelectionnee,
+                    'RESERVATIONID' => $lastID
+                ]);
+            }
 
             //     // Exécuter la requête
             // if ($conn->query($sql) === TRUE) {
@@ -85,7 +89,7 @@ class Reservation extends BaseController
 
             // //     // Fermer la connexion à la base de données
             // $conn->close();
-        }
+        
 
         // Fermer les résultats des requêtes
         // $result_clients->free_result();
