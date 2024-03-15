@@ -2,23 +2,22 @@
 
 namespace App\Controllers;
 
+use App\Models\Reservations;
+
 class Reservation extends BaseController
 {
     public function index(): string
     {
-        // Récupérer le terme de recherche s'il existe
-        $term = $this->request->getGet('search');
+       // Récupérer le terme de recherche s'il existe
+       $term = $this->request->getPost('term');
 
-        // Si le formulaire de recherche est soumis
-        if ($this->request->getMethod() == 'post') {
-            $term = $this->request->getPost('term');
-        }
+       // Charger le modèle
+       $reservationModel = new Reservations();
 
-        // Charger le modèle
-        $reservationModel = new \App\Models\Reservations();
+       // Récupérer les résultats de recherche
+       $data['resultats'] = $reservationModel->rechercherReservations($term);
 
-        // Récupérer les résultats de recherche
-        $data['resultats'] = $reservationModel->rechercherReservations($term);
+       // Passer les données à la vue et afficher la vue
 
         return view('Reservation/gestion-reservation', $data);
     }
@@ -46,13 +45,6 @@ class Reservation extends BaseController
         $reservModel = new \App\Models\Reservations();
         $data = $this->request->getVar();
         $tablesSelectionnees = $data['tablesSelectionnees'];
-        // Vérifier si le formulaire est soumis
-        
-
-
-
-            // Convertir le tableau en chaîne séparée par des virgules pour stocker dans la base de données
-            // $tablesAttribuees = implode(",", $tablesSelectionnees);
 
             // Préparer la requête SQL d'insertion
             //$sql = "INSERT INTO Reservation (ClientID, Date_Heure, Nombre_de_Personne) VALUES ('$clientID', '$dateHeureReservation', '$nombrePersonnes')";
@@ -72,28 +64,6 @@ class Reservation extends BaseController
                     'RESERVATIONID' => $lastID
                 ]);
             }
-
-            //     // Exécuter la requête
-            // if ($conn->query($sql) === TRUE) {
-            //     $last_id = $conn->insert_id;
-            //     foreach ($tablesSelectionnees as $tableSelectionnee) {
-            //         $sql_add_table = "INSERT INTO table_reserve(TableID, ReservationID) VALUES ('$tableSelectionnee', '$last_id')";
-            //         $conn->query($sql_add_table);
-            //     }
-            //     // echo "$last_id";
-
-            //     echo "Réservation ajoutée avec succès.";
-            // } else {
-            //     echo "Erreur : " . $sql . "<br>" . $conn->error;
-            // }
-
-            // //     // Fermer la connexion à la base de données
-            // $conn->close();
-        
-
-        // Fermer les résultats des requêtes
-        // $result_clients->free_result();
-        // $result_tables->free_result();
         return view('Reservation/gestion-reservation');
     }
 

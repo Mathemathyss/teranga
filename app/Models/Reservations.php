@@ -13,7 +13,7 @@ class Reservations extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['CLIENTID','DATE_HEURE','NOMBRE_DE_PERSONNE'];
+    protected $allowedFields    = ['CLIENTID', 'DATE_HEURE', 'NOMBRE_DE_PERSONNE'];
 
     // Dates
     protected $useTimestamps = false;
@@ -41,6 +41,31 @@ class Reservations extends Model
 
     public function rechercherReservations($term)
     {
-        // Votre logique de recherche ici
+        // Requête de recherche avec jointure pour récupérer les réservations, les informations client et les tables associées
+    $this->select('reservation.*, c.Nom as NomClient, c.Prenom as PrenomClient, GROUP_CONCAT(t.Numero_de_Table) as TablesAssociees');
+    $this->join('CLIENTS c', 'reservation.ClientID = c.CLIENTID', 'left');
+    $this->join('TABLE_RESERVE tr', 'reservation.RESERVATIONID = tr.RESERVATIONID', 'left');
+    $this->join('TABLES t', 'tr.TABLEID = t.TABLEID', 'left');
+
+    // Groupement par réservation pour obtenir les tables associées sous forme de liste séparée
+    $this->groupBy('reservation.RESERVATIONID');
+
+    // Si le terme de recherche n'est pas vide, appliquer les conditions de recherche
+    if (!empty($term)) {
+        // Échapper les caractères spéciaux pour éviter les injections SQL
+        $term = $this->db->escapeLikeString($term);
+
+        $this->like('c.Nom', $term);
+        $this->orLike('c.Prenom', $term);
+        $this->orLike('reservation.ClientID', $term);
+        $this->orLike('reservation.Date_Heure', $term);
+        $this->orLike('reservation.Nombre_de_Personne', $term);
+    }else {
+        // Si aucun terme de recherche n'est spécifié, récupérer uniquement les réservations à venir
+        $this->where('reservation.Date_Heure >', date('Y-m-d H:i:s'));
+    }
+    
+    // Exécuter la requête
+    return $this->findAll();
     }
 }

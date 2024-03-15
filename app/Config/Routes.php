@@ -69,7 +69,7 @@ $routes->post('/suppression-table', 'Table::suppressionTable', ['as' => 'Suppres
 # Reservation
 #--------------------------------------------------------------------
 
-$routes->get('/gestion-reservation', 'Reservation::index', ['as' => 'Gestion_Reservation']);
+$routes->match(['get','post'],'/gestion-reservation', 'Reservation::index', ['as' => 'Gestion_Reservation']);
 $routes->get('/liste-reservation', 'Reservation::listeReservation', ['as' => 'Liste_Reservation']);
 
 $routes->get('/ajout-reservation', 'Reservation::ajouterReservationForm', ['as' => 'Ajout_Reservation_Form']);

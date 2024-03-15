@@ -1,12 +1,14 @@
 
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
+
 <?php
+
 $term = isset($termReserv) ? $_GET['search'] : '';
 ?>
     <h2>Gestion des Réservations</h2>
 
-    <form method="post" action="AMODIF">
+    <form method="post" action="<?php url_to('Gestion_Reservation')?>">
         <label>Rechercher par Nom ou prénom client, Date/Heure ou Nombre de Personnes:
             <input type="text" name="term" value="<?php echo $term; ?>">
         </label>
@@ -18,7 +20,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
     </div>
 
     <?php
-    if (!empty($reservList)) {
+    if (!empty($resultats)) {
         echo "<table>
                 <thead>
                     <tr>
@@ -34,7 +36,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                 </thead>
                 <tbody>";
         // Afficher les données de chaque réservation
-        foreach ($reservList as $reserv) {
+        foreach ($resultats as $reserv) {
             echo "<tr>
                     <td>{$reserv['RESERVATIONID']}</td>
                     <td>{$reserv['CLIENTID']}</td>
@@ -43,6 +45,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     <td>{$reserv['DATE_HEURE']}</td>
                     <td>{$reserv['NOMBRE_DE_PERSONNE']}</td>
                     <td>{$reserv['TablesAssociees']}</td>
+                    
                     <td>
                         <a href='modification_reservation.php?id={$reserv['RESERVATIONID']}'><button>Modifier</button></a>
                         <a href='suppression_reservation.php?id={$reserv['RESERVATIONID']}'><button>Supprimer</button></a>

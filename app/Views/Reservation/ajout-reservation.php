@@ -2,7 +2,7 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 <!-- Formulaire HTML pour la création d'une réservation -->
-<form method="post" action="">
+<form method="post" action="<?php url_to('Ajout_Reservation')?>">
     <label>Sélectionnez le client:
         <select name="clientID" required>
             <?php
