@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Reservations;
+use App\Models\Clients;
+use App\Models\Tables;
 
 class Reservation extends BaseController
 {
@@ -74,10 +76,27 @@ class Reservation extends BaseController
     public function modifierReservationForm(): string
     {
         // Récupérer la liste des clients depuis la base de données
-        $reservModel = new \App\Models\Reservations();
-        $reservList = $reservModel->findAll();
+        // $reservModel = new \App\Models\Reservations();
+        // $reservList = $reservModel->findAll();
+        // Récupérer les données depuis les modèles
+        $clientModel = new Clients();
+        $clients = $clientModel->findAll();
 
-        return view('Reservation/modification-reservation', ['reservList' => $reservList]);
+        $tableModel = new Tables();
+        $tables = $tableModel->findAll();
+
+        $reservationModel = new Reservations();
+        $reservations = $reservationModel->findAll();
+
+        // Passer les données à la vue
+        // $data['clients'] = $clients;
+        // $data['tables'] = $tables;
+        // $data['reservations'] = $reservations;
+
+        // Afficher la vue
+        // return view('modification_reservation', $data);
+
+        return view('Reservation/modification-reservation', ['clients' => $clients ,'tables' => $tables ,'reservations' => $reservations]);
     }
 
     public function modifierReservation(): string

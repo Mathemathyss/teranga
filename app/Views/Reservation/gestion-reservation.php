@@ -1,4 +1,3 @@
-
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 
@@ -6,22 +5,22 @@
 
 $term = isset($termReserv) ? $_GET['search'] : '';
 ?>
-    <h2>Gestion des Réservations</h2>
+<h2>Gestion des Réservations</h2>
 
-    <form method="post" action="<?php url_to('Gestion_Reservation')?>">
-        <label>Rechercher par Nom ou prénom client, Date/Heure ou Nombre de Personnes:
-            <input type="text" name="term" value="<?php echo $term; ?>">
-        </label>
-        <input type="submit" value="Rechercher">
-    </form>
+<form method="post" action="<?php url_to('Gestion_Reservation') ?>">
+    <label>Rechercher par Nom ou prénom client, Date/Heure ou Nombre de Personnes:
+        <input type="text" name="term" value="<?php echo $term; ?>">
+    </label>
+    <input type="submit" value="Rechercher">
+</form>
 
-    <div>
-        <a href="<?=url_to('Ajout_Reservation_Form')?>"><button>Ajouter Réservation</button></a>
-    </div>
+<div>
+    <a href="<?= url_to('Ajout_Reservation_Form') ?>"><button>Ajouter Réservation</button></a>
+</div>
 
-    <?php
-    if (!empty($resultats)) {
-        echo "<table>
+<?php
+if (!empty($resultats)) {
+    echo "<table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -35,9 +34,9 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     </tr>
                 </thead>
                 <tbody>";
-        // Afficher les données de chaque réservation
-        foreach ($resultats as $reserv) {
-            echo "<tr>
+    // Afficher les données de chaque réservation
+    foreach ($resultats as $reserv) {
+        echo "<tr>
                     <td>{$reserv['RESERVATIONID']}</td>
                     <td>{$reserv['CLIENTID']}</td>
                     <td>{$reserv['NomClient']}</td>
@@ -47,15 +46,15 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     <td>{$reserv['TablesAssociees']}</td>
                     
                     <td>
-                        <a href='modification_reservation.php?id={$reserv['RESERVATIONID']}'><button>Modifier</button></a>
-                        <a href='suppression_reservation.php?id={$reserv['RESERVATIONID']}'><button>Supprimer</button></a>
-                    </td>
+                        <a href='" . url_to('Modification_Reservation_Form', $reserv['RESERVATIONID']) . "'><button>Modifier</button></a>
+                        <a href='" . url_to('Suppression_Reservation_Form', $reserv['RESERVATIONID']) . "'><button>Supprimer</button></a>
+                </td>
                 </tr>";
-        }
-        echo "</tbody></table>";
-    } else {
-        echo "Aucune réservation trouvée.";
     }
-    ?>
+    echo "</tbody></table>";
+} else {
+    echo "Aucune réservation trouvée.";
+}
+?>
 
 <?= $this->endSection() ?>
