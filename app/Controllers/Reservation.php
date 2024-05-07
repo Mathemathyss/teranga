@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Reservations;
 use App\Models\Clients;
 use App\Models\Tables;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Reservation extends BaseController
 {
@@ -42,7 +43,7 @@ class Reservation extends BaseController
         return view('Reservation/ajout-reservation', ['clientsList' => $clientsList ,'tableList' => $tableList]);
     }
 
-    public function ajouterReservation(): string
+    public function ajouterReservation(): RedirectResponse
     {
         $reservModel = new \App\Models\Reservations();
         $data = $this->request->getVar();
@@ -66,7 +67,7 @@ class Reservation extends BaseController
                     'RESERVATIONID' => $lastID
                 ]);
             }
-        return view('Reservation/gestion-reservation');
+        return redirect()->route('accueil');
     }
 
     #--------------------------------------------------------------------
@@ -101,6 +102,31 @@ class Reservation extends BaseController
 
     public function modifierReservation(): string
     {
+        
+        $reservModel = new \App\Models\Reservations();
+        $data = $this->request->getVar();
+        // var_dump($data) ;
+        $tablesSelectionnees = $data['tablesSelectionnees'];
+        $id = $data['reservationID'];
+
+        $donnees = [
+            'RESERVATIONID' => $data['reservationID'],
+            'CLIENTID' => $data['clientID'],
+            'DATE_HEURE' => $data['dateHeureReservation'],
+            'NOMBRE_DE_PERSONNE' => $data['nombrePersonnes'],
+        ];
+        $reservModel->save($donnees);
+
+        // $lastID = $reservModel->getInsertID();
+        // var_dump($lastID);
+            $tablereservModel = new \App\Models\TableReserve();
+            $tablereservModel->where('RESERVATIONID',$id)->delete();
+            foreach ($data['tablesSelectionnees'] as $tableSelectionnee){
+                $tablereservModel->save([
+                    'TABLEID' => $tableSelectionnee,
+                    'RESERVATIONID' => $id
+                ]);
+            }
         return view('Reservation/gestion-reservation');
     }
 

@@ -61,9 +61,9 @@ class Table extends BaseController
         $data = $this->request->getVar();
         $tableModel = new \App\Models\Tables();
 
-        print('<pre>');
-        print_r($data);
-        print('</pre>');
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
 
         $id = $data['tableID'];
 

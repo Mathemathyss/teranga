@@ -107,4 +107,4 @@ $routes->post('/suppression-commande', 'Commande::suppressionCommande', ['as' =>
 
 
 //page principale
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index', ['as' => 'accueil']);

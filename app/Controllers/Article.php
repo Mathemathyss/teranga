@@ -61,9 +61,9 @@ class Article extends BaseController
         $data = $this->request->getVar();
         $articleModel = new \App\Models\Articles();
 
-        print('<pre>');
-        print_r($data);
-        print('</pre>');
+        // print('<pre>');
+        // print_r($data);
+        // print('</pre>');
 
         // $id = $data['tableID'];
 
