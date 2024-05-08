@@ -39,6 +39,17 @@ class Reservations extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function getAllReservationsWithClientInfo()
+    {
+        // Joindre la table Clients pour obtenir les noms et prénoms associés aux réservations
+        $builder = $this->db->table('reservation');
+        $builder->select('reservation.*, clients.Nom, clients.Prenom');
+        $builder->join('clients', 'clients.ClientID = reservation.ClientID', 'left');
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
     public function rechercherReservations($term)
     {
         // Requête de recherche avec jointure pour récupérer les réservations, les informations client et les tables associées
