@@ -89,7 +89,7 @@ $routes->post('/suppression-reservation', 'Reservation::suppressionReservation',
 # Commande
 #--------------------------------------------------------------------
 
-$routes->get('/gestion-commande', 'Commande::index', ['as' => 'Gestion_Commande']);
+$routes->match(['get','post'],'/gestion-commande', 'Commande::index', ['as' => 'Gestion_Commande']);
 $routes->get('/liste-commande', 'Commande::listeCommande', ['as' => 'Liste_Commande']);
 
 $routes->get('/ajout-commande', 'Commande::ajouterCommandeForm', ['as' => 'Ajout_Commande_Form']);

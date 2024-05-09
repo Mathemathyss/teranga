@@ -37,3 +37,47 @@
 // // Fermer la connexion à la base de données
 // $conn->close();
 // 
+
+
+
+
+
+
+// Fonction de recherche des commandes
+function rechercherCommandes($term)
+{
+    global $conn;
+
+    // Échapper les caractères spéciaux pour éviter les injections SQL
+    $term = mysqli_real_escape_string($conn, $term);
+
+    // Requête de recherche
+    $sql = "SELECT c.*, r.RESERVATIONID, c.DATE_HEURE, CONCAT(cl.NOM, ' ', cl.PRENOM, ' (', r.RESERVATIONID, ')') AS NomPrenomReservation,
+                   GROUP_CONCAT(CONCAT(a.NOM, ' (', dc.QUANTITÉ, ')') SEPARATOR ', ') AS PlatsCommandes
+            FROM COMMANDES c
+            JOIN RESERVATION r ON c.RESERVATIONID = r.RESERVATIONID
+            LEFT JOIN CLIENTS cl ON r.CLIENTID = cl.CLIENTID
+            LEFT JOIN DETAILSCOMMANDE dc ON c.COMMANDEID = dc.COMMANDEID
+            LEFT JOIN ARTICLES a ON dc.ARTICLEID = a.ARTICLEID
+            WHERE c.RESERVATIONID LIKE '%$term%' OR r.DATE_HEURE LIKE '%$term%' OR c.STATUT LIKE '%$term%' OR cl.NOM LIKE '%$term%' OR cl.PRENOM LIKE '%$term%'
+            GROUP BY c.COMMANDEID";
+
+    $result = $conn->query($sql);
+
+    return $result;
+}
+
+// Récupérer le terme de recherche s'il existe
+$term = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Si le formulaire de recherche est soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $term = $_POST['term'];
+}
+
+// Récupérer les résultats de recherche
+$resultats = rechercherCommandes($term);
+
+// Fermer la connexion à la base de données
+$conn->close();
+?>
