@@ -10,7 +10,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
     <h2>Gestion des Commandes</h2>
 
     <!-- Formulaire de recherche de commandes -->
-    <form method="post" action="gestion_commande.php">
+    <form method="post" action="<?php url_to('Gestion_Commande') ?>">
         <label for="term">Rechercher par ID Réservation, Date/Heure, Nom, Prenom client, nom d'article ou Statut :</label>
         <input type="text" name="term" id="term" value="<?php echo $term; ?>">
         <input type="submit" value="Rechercher">

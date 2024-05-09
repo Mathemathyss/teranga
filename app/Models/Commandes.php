@@ -57,7 +57,7 @@ class Commandes extends Model
             // Échapper les caractères spéciaux pour éviter les injections SQL
             $term = $this->db->escapeLikeString($term);
 
-            $this->like('c.RESERVATIONID', $term);
+            $this->like('commandes.RESERVATIONID', $term);
             $this->orLike('r.DATE_HEURE', $term);
             $this->orLike('a.NOM', $term);
             $this->orLike('cl.NOM', $term);
