@@ -64,8 +64,8 @@ class Commandes extends Model
             $this->orLike('cl.PRENOM', $term);
         } else {
             // Si aucun terme de recherche n'est spécifié, récupérer uniquement les Commandes en cours
-            $this->where('commandes.STATUT', 'Non commencé');
-            $this->orWhere('commandes.STATUT', 'En cours');
+            $this->where('commandes.STATUT', 'Enregistrée');
+            $this->orWhere('commandes.STATUT', 'En cours de préparation');
         }
 
         // Exécuter la requête

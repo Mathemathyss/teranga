@@ -44,8 +44,8 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['STATUT']}</td>
                     <td>
-                    <a href='" . url_to('Modification_Commande_Form', $reserv['COMMANDEID']) . "'><button>Modifier</button></a>
-                    <a href='" . url_to('Suppression_Commande_Form', $reserv['COMMANDEID']) . "'><button>Supprimer</button></a>
+                    <a href='" . url_to('Modification_Commande_Form', $commande['COMMANDEID']) . "'><button>Modifier</button></a>
+                    <a href='" . url_to('Suppression_Commande_Form', $commande['COMMANDEID']) . "'><button>Supprimer</button></a>
                     </td>
                 </tr>";
         }
