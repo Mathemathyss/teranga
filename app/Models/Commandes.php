@@ -71,4 +71,5 @@ class Commandes extends Model
         // Exécuter la requête
         return $this->findAll();
     }
+
 }

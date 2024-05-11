@@ -18,9 +18,9 @@ $term = isset($termReserv) ? $_GET['search'] : '';
 
     <!-- Boutons pour créer, modifier et supprimer une commande -->
     <div>
-        <a href="ajout_commande.php"><button>Créer une Commande</button></a>
+    <a href="<?= url_to('Ajout_Commande_Form') ?>"><button>Ajouter une commande</button></a>
         <!-- <a href="modification_commande.php"><button>Modifier une Commande</button></a> -->
-        <a href="suppression_commande.php"><button>Supprimer une Commande</button></a>
+        <!-- <a href="suppression_commande.php"><button>Supprimer une Commande</button></a> -->
     </div>
 
     <!-- Affichage des résultats de recherche ou de toutes les commandes -->
@@ -44,8 +44,8 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['STATUT']}</td>
                     <td>
-                        <a href='modification_commande.php?id={$commande['COMMANDEID']}'><button>Modifier</button></a>
-                        <a href='suppression_commande.php?id={$commande['COMMANDEID']}'><button>Supprimer</button></a>
+                    <a href='" . url_to('Modification_Commande_Form', $reserv['COMMANDEID']) . "'><button>Modifier</button></a>
+                    <a href='" . url_to('Suppression_Commande_Form', $reserv['COMMANDEID']) . "'><button>Supprimer</button></a>
                     </td>
                 </tr>";
         }
