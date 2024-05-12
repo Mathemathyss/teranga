@@ -62,6 +62,7 @@ class Commandes extends Model
             $this->orLike('a.NOM', $term);
             $this->orLike('cl.NOM', $term);
             $this->orLike('cl.PRENOM', $term);
+            $this->orLike('commandes.STATUT', $term);
         } else {
             // Si aucun terme de recherche n'est spécifié, récupérer uniquement les Commandes en cours
             $this->where('commandes.STATUT', 'Enregistrée');
@@ -71,5 +72,6 @@ class Commandes extends Model
         // Exécuter la requête
         return $this->findAll();
     }
+
 
 }

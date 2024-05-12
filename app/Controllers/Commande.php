@@ -72,7 +72,7 @@ class Commande extends BaseController
 
         // Boucler sur les articles et quantités et insérer dans la table de détails de commande
         foreach ($quantites as $articleID => $quantite) {
-            var_dump($articleID,$quantite);
+            var_dump($articleID, $quantite);
             if ($quantite > 0) {
                 $detailsCommandeModel->insert([
                     'COMMANDEID' => $commandeID,
@@ -89,5 +89,29 @@ class Commande extends BaseController
         // }
 
         return redirect()->route('accueil');
+    }
+
+    public function modifierCommandeForm($commandeID): string
+    {
+        // var_dump($commandeID);
+        // Charger le modèle de commande
+        $commandeModel = new \App\Models\Commandes();
+        // Requête pour récupérer les détails de la commande en jointure avec la table DetailsCommande
+        $commande_details = $commandeModel->find($commandeID);
+
+        // Récupérer la liste des clients depuis la base de données
+        $reservModel = new \App\Models\Reservations();
+        // Récupérer toutes les réservations avec les informations de nom et prénom des clients
+        $reservList = $reservModel->getAllReservationsWithClientInfo();
+
+        // Récupérer la liste des tables depuis la base de données
+        $articleModel = new \App\Models\Articles();
+        $articleList = $articleModel->findAll();
+
+        // Charger le modèle pour la table DetailsCommande
+        $detailsCommandeModel = new \App\Models\DetailsCommande();
+        $detailsarticle = $detailsCommandeModel->where('COMMANDEID',$commandeID)->find();
+
+        return view('Commande/modification-commande', ['commande_details' => $commande_details, 'reservations' =>$reservList, 'articles' => $articleList, 'detailsarticle' => $detailsarticle]);
     }
 }

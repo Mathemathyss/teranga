@@ -96,7 +96,7 @@ $routes->get('/ajout-commande', 'Commande::ajouterCommandeForm', ['as' => 'Ajout
 //méthode d'ajout en base de donnnée associée
 $routes->post('/ajout-commande', 'Commande::ajouterCommande', ['as' => 'Ajout_Commande']);
 
-$routes->get('/modification-commande', 'Commande::modifierCommandeForm', ['as' => 'Modification_Commande_Form']);
+$routes->get('/modification-commande/(:num)', 'Commande::modifierCommandeForm/$1', ['as' => 'Modification_Commande_Form']);
 //méthode de modification en base de donnnée associée
 $routes->post('/modification-commande', 'Commande::modifierCommande', ['as' => 'Modification_Commande']);
 
