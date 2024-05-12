@@ -38,7 +38,7 @@
         </a>
 
         <!-- Sixième bouton -->
-        <a href="encaisser.php" class="button-link">
+        <a href="<?= url_to('Encaisser_Form')?>" class="button-link">
             <img src="inc/encaisser.jpg" alt="Image 6">
             <div class="button-text">Encaisser un client</div>
         </a>

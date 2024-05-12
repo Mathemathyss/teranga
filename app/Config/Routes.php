@@ -105,6 +105,12 @@ $routes->get('/suppression-commande', 'Commande::suppressionCommandeForm', ['as'
 $routes->post('/suppression-commande', 'Commande::suppressionCommande', ['as' => 'Suppression_Commande']);
 
 
+#--------------------------------------------------------------------
+# Encaisser
+#--------------------------------------------------------------------
+$routes->get('/encaisser', 'Commande::encaisser', ['as' => 'Encaisser_Form']);
+
+
 
 //page principale
 $routes->get('/', 'Home::index', ['as' => 'accueil']);

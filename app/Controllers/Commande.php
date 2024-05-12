@@ -166,4 +166,58 @@ class Commande extends BaseController
 
         return view('Commande/gestion-commande');
     }
+
+    public function encaisserForm(): string
+    {
+
+        return view('Encaisser/encaisser'); 
+    }
+    public function encaisser()
+    {
+        // Récupérer la liste des commandes depuis le modèle
+        $commandeModel = new \App\Models\Commandes();
+        $commandes = $commandeModel->findAll();
+
+        // Récupérer l'ID de la commande sélectionnée (s'il existe)
+        $selectedCommandeID = $this->request->getVar('commandeID');
+
+        // Initialiser les variables pour le nom et le prénom du client
+        $clientNom = '';
+        $clientPrenom = '';
+        $commande_details = '';
+        $details_commande = '';
+
+        // Si une commande est sélectionnée, récupérer les détails de la commande et les informations sur le client
+        if (!empty($selectedCommandeID)) {
+            $commande_details = $commandeModel->find($selectedCommandeID);
+
+            // Requête pour récupérer les détails des articles de la commande sélectionnée
+        $detailsCommandeModel = new \App\Models\DetailsCommande();
+        $details_commande = $detailsCommandeModel
+            ->select('DetailsCommande.*, Articles.Prix AS PrixArticle, Articles.Nom AS NomArticle')
+            ->join('Articles', 'DetailsCommande.ArticleID = Articles.ArticleID')
+            ->where('DetailsCommande.CommandeID', $selectedCommandeID)
+            ->findAll();
+
+            // Récupérer les informations sur le client à partir de la réservation associée à la commande
+            $reservationModel = new \App\Models\Reservations();
+            $reservation = $reservationModel->select('Clients.NOM, Clients.PRENOM')
+                                           ->join('Clients', 'Reservation.ClientID = Clients.ClientID')
+                                           ->find($commande_details['RESERVATIONID']);
+
+            // Récupérer le nom et le prénom du client
+            $clientNom = $reservation['NOM'];
+            $clientPrenom = $reservation['PRENOM'];
+        }
+
+        // Charger la vue avec les données récupérées
+        return view('Encaisser/encaisser', [
+            'commandes' => $commandes,
+            'selectedCommandeID' => $selectedCommandeID,
+            'commande_details' => $commande_details,
+            'details_commande' => $details_commande,
+            'clientNom' => $clientNom,
+            'clientPrenom' => $clientPrenom
+        ]);
+    }
 }
