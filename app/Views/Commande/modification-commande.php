@@ -5,7 +5,7 @@
 <main>
     <h2>Modification de Commande</h2>
 
-    <form method="post" action="<?= base_url('commande/modifierCommande') ?>">
+    <form method="post" action="<?php echo url_to('Modification_Commande') ?>">
         <input type="hidden" name="commandeID" value="<?= $commande_details['COMMANDEID'] ?>">
 
         <label>Sélectionnez la réservation:
@@ -48,7 +48,7 @@
             <?php endforeach; ?>
         </div>
 
-        <input type="submit" value="Modifier Commande">
+        <input type="submit" value="Modifier la Commande">
     </form>
 </main>
 

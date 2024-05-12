@@ -110,8 +110,41 @@ class Commande extends BaseController
 
         // Charger le modèle pour la table DetailsCommande
         $detailsCommandeModel = new \App\Models\DetailsCommande();
-        $detailsarticle = $detailsCommandeModel->where('COMMANDEID',$commandeID)->find();
+        $detailsarticle = $detailsCommandeModel->where('COMMANDEID', $commandeID)->find();
 
-        return view('Commande/modification-commande', ['commande_details' => $commande_details, 'reservations' =>$reservList, 'articles' => $articleList, 'detailsarticle' => $detailsarticle]);
+        return view('Commande/modification-commande', ['commande_details' => $commande_details, 'reservations' => $reservList, 'articles' => $articleList, 'detailsarticle' => $detailsarticle]);
+    }
+
+    public function modifierCommande(): string
+    {
+        $data = $this->request->getVar();
+        var_dump($data);
+        $commandeID = $data['commandeID'];
+        //supprimer les données dans détails commande, les anciennes données
+        $detailsCommandeModel = new \App\Models\DetailsCommande();
+        $detailsarticle = $detailsCommandeModel->where('COMMANDEID', $commandeID)->delete();
+        // Charger le modèle de commande
+        $commandeModel = new \App\Models\Commandes();
+
+        // Créer la commande
+        $commandeModel->save([
+            'COMMANDEID' => $commandeID,
+            'RESERVATIONID' => $data['reservationID'],
+            'DATE_HEURE' => date('Y-m-d H:i:s'), // Date et heure actuelles
+            'STATUT' => $data['statut']
+        ]);
+        // Boucler sur les articles et quantités et insérer dans la table de détails de commande
+        foreach ($data['quantites'] as $articleID => $quantite) {
+            var_dump($articleID, $quantite);
+            if ($quantite > 0) {
+                $detailsCommandeModel->save([
+                    'COMMANDEID' => $commandeID,
+                    'ARTICLEID' => $articleID,
+                    'QUANTITÉ' => $quantite
+                ]);
+            }
+        }
+
+        return view('Commande/gestion-commande');
     }
 }
