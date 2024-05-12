@@ -147,4 +147,11 @@ class Commande extends BaseController
 
         return view('Commande/gestion-commande');
     }
+    public function suppressionCommandeForm(): string
+    {
+        $commandeModel = new \App\Models\Commandes();
+        $commandes = $commandeModel->findAll();
+
+        return view('Commande/suppression-commande',['commandes' => $commandes]);
+    }
 }
