@@ -152,6 +152,18 @@ class Commande extends BaseController
         $commandeModel = new \App\Models\Commandes();
         $commandes = $commandeModel->findAll();
 
-        return view('Commande/suppression-commande',['commandes' => $commandes]);
+        return view('Commande/suppression-commande', ['commandes' => $commandes]);
+    }
+
+    public function suppressionCommande(): string
+    {
+        $data = $this->request->getVar();
+        // var_dump($data);
+        $detailsCommandeModel = new \App\Models\DetailsCommande();
+        $detailsCommandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+        $commandeModel = new \App\Models\Commandes();
+        $commandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+
+        return view('Commande/gestion-commande');
     }
 }

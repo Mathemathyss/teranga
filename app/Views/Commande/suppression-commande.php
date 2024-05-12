@@ -5,7 +5,7 @@
     <h2>Suppression de Commande</h2>
 
     <!-- Formulaire HTML pour la suppression d'une commande -->
-    <form method="post" action="<?= base_url('commande/supprimerCommande') ?>">
+    <form method="post" action="<?php url_to('Suppression_Commande') ?>">
         <label>Sélectionnez la commande à supprimer:
             <select name="commandeID" required>
                 <?php foreach ($commandes as $commande) : ?>
