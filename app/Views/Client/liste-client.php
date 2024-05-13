@@ -13,7 +13,7 @@ if (!empty($clientsList)) {
 echo "<table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Numéro du Client</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Téléphone (+33)</th>
