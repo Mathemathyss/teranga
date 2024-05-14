@@ -23,7 +23,7 @@ if (!empty($resultats)) {
     echo "<table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Numéro Réservation</th>
                         <th>ClientID</th>
                         <th>Nom Client</th>
                         <th>Prénom Client</th>

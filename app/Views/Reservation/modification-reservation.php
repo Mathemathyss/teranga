@@ -25,7 +25,7 @@
 
     <label>Sélectionnez les tables à attribuer:<br>
         <?php foreach ($tables as $table) : ?>
-            <label><input type="checkbox" name="tablesSelectionnees[]" value="<?= $table['TABLEID'] ?>"><?= $table['NUMERO_DE_TABLE'] ?></label><br>
+            <label><input type="checkbox" name="tablesSelectionnees[]" value="<?= $table['TABLEID'] ?>"><?= $table['NUMERO_DE_TABLE']. " (" . $table['CAPACITE'] . ")" ?></label><br>
         <?php endforeach; ?>
     </label><br>
 
