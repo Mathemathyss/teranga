@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class TableReserve extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'TABLE_RESERVE';
+    protected $table            = 'table_reserve';
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Commandes extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'COMMANDES';
+    protected $table            = 'commandes';
     protected $primaryKey       = 'COMMANDEID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -46,10 +46,10 @@ class Commandes extends Model
         // Requête de recherche avec jointure pour récupérer les commandes, les informations de réservation et les détails de commande
         $this->select('commandes.*, r.RESERVATIONID, r.DATE_HEURE, CONCAT(cl.NOM, " ", cl.PRENOM, " (", r.RESERVATIONID, ")") AS NomPrenomReservation,
             GROUP_CONCAT(CONCAT(a.NOM, " (", dc.QUANTITÉ, ")") SEPARATOR ", ") AS PlatsCommandes');
-        $this->join('RESERVATION r', 'commandes.RESERVATIONID = r.RESERVATIONID');
-        $this->join('CLIENTS cl', 'r.CLIENTID = cl.CLIENTID', 'left');
-        $this->join('DETAILSCOMMANDE dc', 'commandes.COMMANDEID = dc.COMMANDEID', 'left');
-        $this->join('ARTICLES a', 'dc.ARTICLEID = a.ARTICLEID', 'left');
+        $this->join('reservation r', 'commandes.RESERVATIONID = r.RESERVATIONID');
+        $this->join('clients cl', 'r.CLIENTID = cl.CLIENTID', 'left');
+        $this->join('detailscommande dc', 'commandes.COMMANDEID = dc.COMMANDEID', 'left');
+        $this->join('articles a', 'dc.ARTICLEID = a.ARTICLEID', 'left');
         $this->groupBy('commandes.COMMANDEID');
 
         // Si le terme de recherche n'est pas vide, appliquer les conditions de recherche

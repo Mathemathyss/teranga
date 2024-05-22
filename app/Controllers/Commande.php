@@ -115,10 +115,10 @@ class Commande extends BaseController
         return view('Commande/modification-commande', ['commande_details' => $commande_details, 'reservations' => $reservList, 'articles' => $articleList, 'detailsarticle' => $detailsarticle]);
     }
 
-    public function modifierCommande(): string
+    public function modifierCommande(): RedirectResponse
     {
         $data = $this->request->getVar();
-        var_dump($data);
+        // var_dump($data);
         $commandeID = $data['commandeID'];
         //supprimer les données dans détails commande, les anciennes données
         $detailsCommandeModel = new \App\Models\DetailsCommande();
@@ -145,7 +145,7 @@ class Commande extends BaseController
             }
         }
 
-        return view('Commande/gestion-commande');
+        return redirect()->route('accueil');
     }
     public function suppressionCommandeForm(): string
     {
@@ -155,7 +155,7 @@ class Commande extends BaseController
         return view('Commande/suppression-commande', ['commandes' => $commandes]);
     }
 
-    public function suppressionCommande(): string
+    public function suppressionCommande(): RedirectResponse
     {
         $data = $this->request->getVar();
         // var_dump($data);
@@ -164,7 +164,7 @@ class Commande extends BaseController
         $commandeModel = new \App\Models\Commandes();
         $commandeModel->where('COMMANDEID', $data['commandeID'])->delete();
 
-        return view('Commande/gestion-commande');
+        return redirect()->route('accueil');
     }
 
     public function encaisserForm(): string
@@ -194,15 +194,15 @@ class Commande extends BaseController
             // Requête pour récupérer les détails des articles de la commande sélectionnée
         $detailsCommandeModel = new \App\Models\DetailsCommande();
         $details_commande = $detailsCommandeModel
-            ->select('DetailsCommande.*, Articles.Prix AS PrixArticle, Articles.Nom AS NomArticle')
-            ->join('Articles', 'DetailsCommande.ArticleID = Articles.ArticleID')
-            ->where('DetailsCommande.CommandeID', $selectedCommandeID)
+            ->select('detailscommande.*, articles.Prix AS PrixArticle, articles.Nom AS NomArticle')
+            ->join('articles', 'detailscommande.ArticleID = articles.ArticleID')
+            ->where('detailscommande.CommandeID', $selectedCommandeID)
             ->findAll();
 
             // Récupérer les informations sur le client à partir de la réservation associée à la commande
             $reservationModel = new \App\Models\Reservations();
-            $reservation = $reservationModel->select('Clients.NOM, Clients.PRENOM')
-                                           ->join('Clients', 'Reservation.ClientID = Clients.ClientID')
+            $reservation = $reservationModel->select('clients.NOM, clients.PRENOM')
+                                           ->join('clients', 'reservation.ClientID = clients.ClientID')
                                            ->find($commande_details['RESERVATIONID']);
 
             // Récupérer le nom et le prénom du client
