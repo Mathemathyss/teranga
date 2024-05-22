@@ -54,9 +54,9 @@ class Reservations extends Model
     {
         // Requête de recherche avec jointure pour récupérer les réservations, les informations client et les tables associées
     $this->select('reservation.*, c.Nom as NomClient, c.Prenom as PrenomClient, GROUP_CONCAT(t.Numero_de_Table) as TablesAssociees');
-    $this->join('CLIENTS c', 'reservation.ClientID = c.CLIENTID', 'left');
-    $this->join('TABLE_RESERVE tr', 'reservation.RESERVATIONID = tr.RESERVATIONID', 'left');
-    $this->join('TABLES t', 'tr.TABLEID = t.TABLEID', 'left');
+    $this->join('clients c', 'reservation.ClientID = c.CLIENTID', 'left');
+    $this->join('table_reserve tr', 'reservation.RESERVATIONID = tr.RESERVATIONID', 'left');
+    $this->join('tables t', 'tr.TABLEID = t.TABLEID', 'left');
 
     // Groupement par réservation pour obtenir les tables associées sous forme de liste séparée
     $this->groupBy('reservation.RESERVATIONID');
