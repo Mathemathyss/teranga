@@ -115,10 +115,10 @@ class Commande extends BaseController
         return view('Commande/modification-commande', ['commande_details' => $commande_details, 'reservations' => $reservList, 'articles' => $articleList, 'detailsarticle' => $detailsarticle]);
     }
 
-    public function modifierCommande(): string
+    public function modifierCommande(): RedirectResponse
     {
         $data = $this->request->getVar();
-        var_dump($data);
+        // var_dump($data);
         $commandeID = $data['commandeID'];
         //supprimer les données dans détails commande, les anciennes données
         $detailsCommandeModel = new \App\Models\DetailsCommande();
@@ -145,7 +145,7 @@ class Commande extends BaseController
             }
         }
 
-        return view('Commande/gestion-commande');
+        return redirect()->route('accueil');
     }
     public function suppressionCommandeForm(): string
     {
