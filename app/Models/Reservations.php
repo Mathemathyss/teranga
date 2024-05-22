@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Reservations extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'RESERVATION';
+    protected $table            = 'reservation';
     protected $primaryKey       = 'RESERVATIONID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
