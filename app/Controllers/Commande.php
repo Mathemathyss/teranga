@@ -194,9 +194,9 @@ class Commande extends BaseController
             // Requête pour récupérer les détails des articles de la commande sélectionnée
         $detailsCommandeModel = new \App\Models\DetailsCommande();
         $details_commande = $detailsCommandeModel
-            ->select('DetailsCommande.*, Articles.Prix AS PrixArticle, Articles.Nom AS NomArticle')
-            ->join('articles', 'DetailsCommande.ArticleID = articles.ArticleID')
-            ->where('DetailsCommande.CommandeID', $selectedCommandeID)
+            ->select('detailscommande.*, articles.Prix AS PrixArticle, articles.Nom AS NomArticle')
+            ->join('articles', 'detailscommande.ArticleID = articles.ArticleID')
+            ->where('detailscommande.CommandeID', $selectedCommandeID)
             ->findAll();
 
             // Récupérer les informations sur le client à partir de la réservation associée à la commande
