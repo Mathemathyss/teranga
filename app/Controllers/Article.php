@@ -43,17 +43,23 @@ class Article extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
-    public function modifierArticleForm(): string
+    public function modifierArticleForm()
     {
         // Récupérer la liste des articles depuis la base de données
         $articleModel = new \App\Models\Articles();
         $articleList = $articleModel->findAll();
 
-        // $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
+        // Récupérer l'article sélectionné s'il y en a un
+        $selectedArticle = null;
+        $articleID = $this->request->getVar('articleID');
+        if (!empty($articleID)) {
+            $selectedArticle = $articleModel->find($articleID);
+        }
 
-
-
-        return view('Article/modification-article', ['articleList' => $articleList]);
+        return view('Article/modification-article', [
+            'articleList' => $articleList,
+            'selectedArticle' => $selectedArticle,
+        ]);
     }
 
     public function modifierArticle(): string
