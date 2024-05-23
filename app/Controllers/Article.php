@@ -43,7 +43,7 @@ class Article extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
-    public function modifierArticleForm()
+    public function modifierArticleForm(): string
     {
         // Récupérer la liste des articles depuis la base de données
         $articleModel = new \App\Models\Articles();

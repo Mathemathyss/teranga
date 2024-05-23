@@ -47,7 +47,7 @@ class Client extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
-    public function modifierClientForm()
+    public function modifierClientForm(): string
     {
         // Récupérer la liste des clients depuis la base de données
         $clientModel = new \App\Models\Clients();
