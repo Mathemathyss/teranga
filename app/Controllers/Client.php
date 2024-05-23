@@ -47,17 +47,30 @@ class Client extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
-    public function modifierClientForm(): string
+    public function modifierClientForm()
     {
         // Récupérer la liste des clients depuis la base de données
         $clientModel = new \App\Models\Clients();
         $clientsList = $clientModel->findAll();
 
         // $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
+        // Initialiser les variables du client
+        $selectedClient = null;
 
+        // Vérifier si un clientID a été passé en paramètre
+        $clientID = $this->request->getVar('clientID');
+        if (!empty($clientID)) {
+            // Récupérer les informations du client sélectionné
+            $selectedClient = $clientModel->find($clientID);
+        }
 
+        // Charger la vue avec les données des clients
+        return view('Client/modification-client', [
+            'clientsList' => $clientsList,
+            'selectedClient' => $selectedClient,
+        ]);
 
-        return view('Client/modification-client', ['clientsList' => $clientsList]);
+        //return view('Client/modification-client', ['clientsList' => $clientsList]);
     }
 
     public function modifierClient(): string
@@ -76,7 +89,7 @@ class Client extends BaseController
             'NOM' => $data['nom'],
             'PRENOM' => $data['prenom'],
             'TELEPHONE' => $data['telephone'],
-            'email' => $data['email']
+            'EMAIL' => $data['email']
         ];
         $clientModel->save($donnees);
 
