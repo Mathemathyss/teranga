@@ -24,7 +24,7 @@ if (!empty($resultats)) {
                 <thead>
                     <tr>
                         <th>Numéro Réservation</th>
-                        <th>ClientID</th>
+                        <th>Numéro client</th>
                         <th>Nom Client</th>
                         <th>Prénom Client</th>
                         <th>Date/Heure</th>

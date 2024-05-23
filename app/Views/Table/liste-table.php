@@ -8,8 +8,8 @@ if (!empty($tableList)) {
 echo "<table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Numéro de Table</th>
+                        <th>Identifiant de la Table</th>
+                        <th>Numéro en salle de Table</th>
                         <th>Capacité</th>
                         <th>État</th>
                     </tr>

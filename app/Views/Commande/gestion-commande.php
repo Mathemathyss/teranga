@@ -28,8 +28,8 @@ $term = isset($termReserv) ? $_GET['search'] : '';
     if (!empty($resultats)) {
         echo "<table border='1'>
                 <tr>
-                    <th>ID Commande</th>
-                    <th>ID Réservation</th>
+                    <th>Numéro Commande</th>
+                    <th>Numéro Réservation (nom client)</th>
                     <th>Date et Heure Commande</th>
                     <th>Plats Commandés (Quantité)</th>
                     <th>Statut</th>
