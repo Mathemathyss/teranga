@@ -149,7 +149,7 @@ class Reservation extends BaseController
         // Récupérer toutes les réservations avec les informations de nom et prénom des clients
         $reservList = $reservModel->getAllReservationsWithClientInfo();
 
-        return view('Reservation/suppression-Reservation', ['reservList' => $reservList]);
+        return view('Reservation/suppression-reservation', ['reservList' => $reservList]);
     }
 
     public function suppressionReservation(): string
