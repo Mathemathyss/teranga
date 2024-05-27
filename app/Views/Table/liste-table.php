@@ -9,7 +9,7 @@ echo "<table>
                 <thead>
                     <tr>
                         <th>Identifiant de la Table</th>
-                        <th>Numéro en salle de Table</th>
+                        <th>Numéro en salle de la Table</th>
                         <th>Capacité</th>
                         <th>État</th>
                     </tr>
