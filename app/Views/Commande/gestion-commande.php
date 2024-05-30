@@ -40,12 +40,13 @@ $term = isset($termReserv) ? $_GET['search'] : '';
         // Afficher les données de chaque commande
         foreach ($resultats as $commande) {
             $heure = $commande['DATE_HEURE'];
+            $heureForm = $heure->format('Y-m-d H:i:s');
             $heurelivraison = ($commande['LIEU'] == 'A emporter') ? [date("Y-m-d H:i:s", strtotime('+2 hours', strtotime($heure)))] : '' ;
             //var_dump($heurelivraison);
             echo "<tr>
                     <td>{$commande['COMMANDEID']}</td>
                     <td>{$commande['NomPrenomReservation']}</td>
-                    <td> $heure + ($heurelivraison)</td>
+                    <td>$heureForm + ($heurelivraison)</td>
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['LIEU']}</td>
                     <td>{$commande['STATUT']}</td>
