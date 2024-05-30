@@ -74,12 +74,9 @@ class Reservation extends BaseController
     # MODIFICATION
     #--------------------------------------------------------------------
 
-    public function modifierReservationForm(): string
+    public function modifierReservationForm($reservationID): string
     {
-        // Récupérer la liste des clients depuis la base de données
-        // $reservModel = new \App\Models\Reservations();
-        // $reservList = $reservModel->findAll();
-        // Récupérer les données depuis les modèles
+        // Récupérer la liste des clients, tables, et réservations depuis la base de données
         $clientModel = new Clients();
         $clients = $clientModel->findAll();
 
@@ -89,15 +86,26 @@ class Reservation extends BaseController
         $reservationModel = new Reservations();
         $reservations = $reservationModel->findAll();
 
-        // Passer les données à la vue
-        // $data['clients'] = $clients;
-        // $data['tables'] = $tables;
-        // $data['reservations'] = $reservations;
+        // Initialiser les variables
+        $selectedReserv = null;
+        $selectedTableIds = [];
 
-        // Afficher la vue
-        // return view('modification_reservation', $data);
+        // Si une réservation est sélectionnée, récupérer les détails de la réservation et les tables attribuées
+        if ($reservationID) {
+            $selectedReserv = $reservationModel->find($reservationID);
 
-        return view('Reservation/modification-reservation', ['clients' => $clients, 'tables' => $tables, 'reservations' => $reservations]);
+            $tableReserveModel = new \App\Models\TableReserve();
+            $selectedTables = $tableReserveModel->where('RESERVATIONID', $reservationID)->findAll();
+            $selectedTableIds = array_column($selectedTables, 'TABLEID');
+        }
+
+        return view('Reservation/modification-reservation', [
+            'clients' => $clients,
+            'tables' => $tables,
+            'reservations' => $reservations,
+            'selectedReserv' => $selectedReserv,
+            'selectedTableIds' => $selectedTableIds,
+        ]);
     }
 
     public function modifierReservation(): string
@@ -141,18 +149,18 @@ class Reservation extends BaseController
         // Récupérer toutes les réservations avec les informations de nom et prénom des clients
         $reservList = $reservModel->getAllReservationsWithClientInfo();
 
-        return view('Reservation/suppression-Reservation', ['reservList' => $reservList]);
+        return view('Reservation/suppression-reservation', ['reservList' => $reservList]);
     }
 
     public function suppressionReservation(): string
     {
         $reservModel = new \App\Models\Reservations();
         $data = $this->request->getVar();
-        $id=$data['reservationID'];
+        $id = $data['reservationID'];
         $tablereservModel = new \App\Models\TableReserve();
         $tablereservModel->where('RESERVATIONID', $id)->delete();
         $reservModel->where('RESERVATIONID', $id)->delete();
-        
+
         return view('Reservation/gestion-reservation');
     }
 

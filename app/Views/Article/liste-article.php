@@ -7,7 +7,7 @@
         echo "<table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Numéro de l'article</th>
                         <th>Nom</th>
                         <th>Description</th>
                         <th>Prix</th>

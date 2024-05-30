@@ -170,7 +170,7 @@ class Commande extends BaseController
     public function encaisserForm(): string
     {
 
-        return view('Encaisser/encaisser'); 
+        return view('Encaisser/encaisser');
     }
     public function encaisser()
     {
@@ -192,18 +192,18 @@ class Commande extends BaseController
             $commande_details = $commandeModel->find($selectedCommandeID);
 
             // Requête pour récupérer les détails des articles de la commande sélectionnée
-        $detailsCommandeModel = new \App\Models\DetailsCommande();
-        $details_commande = $detailsCommandeModel
-            ->select('detailscommande.*, articles.Prix AS PrixArticle, articles.Nom AS NomArticle')
-            ->join('articles', 'detailscommande.ArticleID = articles.ArticleID')
-            ->where('detailscommande.CommandeID', $selectedCommandeID)
-            ->findAll();
+            $detailsCommandeModel = new \App\Models\DetailsCommande();
+            $details_commande = $detailsCommandeModel
+                ->select('detailscommande.*, articles.Prix AS PrixArticle, articles.Nom AS NomArticle')
+                ->join('articles', 'detailscommande.ArticleID = articles.ArticleID')
+                ->where('detailscommande.CommandeID', $selectedCommandeID)
+                ->findAll();
 
             // Récupérer les informations sur le client à partir de la réservation associée à la commande
             $reservationModel = new \App\Models\Reservations();
             $reservation = $reservationModel->select('clients.NOM, clients.PRENOM')
-                                           ->join('clients', 'reservation.ClientID = clients.ClientID')
-                                           ->find($commande_details['RESERVATIONID']);
+                ->join('clients', 'reservation.ClientID = clients.ClientID')
+                ->find($commande_details['RESERVATIONID']);
 
             // Récupérer le nom et le prénom du client
             $clientNom = $reservation['NOM'];

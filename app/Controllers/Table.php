@@ -49,11 +49,17 @@ class Table extends BaseController
         $tableModel = new \App\Models\Tables();
         $tableList = $tableModel->findAll();
 
-        // $sql_clients = "SELECT ClientID, CONCAT(Nom, ' ', Prenom) AS NomComplet FROM Clients";
+        // Récupérer la table sélectionnée s'il y en a une
+        $selectedTable = null;
+        $tableID = $this->request->getVar('tableID');
+        if (!empty($tableID)) {
+            $selectedTable = $tableModel->find($tableID);
+        }
 
-
-
-        return view('Table/modification-table', ['tableList' => $tableList]);
+        return view('Table/modification-table', [
+            'tableList' => $tableList,
+            'selectedTable' => $selectedTable,
+        ]);
     }
 
     public function modifierTable(): string

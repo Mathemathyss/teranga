@@ -76,7 +76,7 @@ $routes->get('/ajout-reservation', 'Reservation::ajouterReservationForm', ['as' 
 //méthode d'ajout en base de donnnée associée
 $routes->post('/ajout-reservation', 'Reservation::ajouterReservation', ['as' => 'Ajout_Reservation']);
 
-$routes->get('/modification-reservation', 'Reservation::modifierReservationForm', ['as' => 'Modification_Reservation_Form']);
+$routes->get('/modification-reservation/(:num)', 'Reservation::modifierReservationForm/$1', ['as' => 'Modification_Reservation_Form']);
 //méthode de modification en base de donnnée associée
 $routes->post('/modification-reservation', 'Reservation::modifierReservation', ['as' => 'Modification_Reservation']);
 
