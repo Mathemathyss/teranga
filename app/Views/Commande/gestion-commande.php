@@ -23,6 +23,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
         <!-- <a href="suppression_commande.php"><button>Supprimer une Commande</button></a> -->
     </div>
 
+    <!--date("Y-m-d H:i:s", strtotime('+3 hours', $commande['DATE_HEURE']))-->
     <!-- Affichage des résultats de recherche ou de toutes les commandes -->
     <?php
     if (!empty($resultats)) {
@@ -41,7 +42,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
             echo "<tr>
                     <td>{$commande['COMMANDEID']}</td>
                     <td>{$commande['NomPrenomReservation']}</td>
-                    <td>{$commande['DATE_HEURE']}</td>
+                    <td>{$commande['DATE_HEURE']} +()</td>
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['LIEU']}</td>
                     <td>{$commande['STATUT']}</td>
