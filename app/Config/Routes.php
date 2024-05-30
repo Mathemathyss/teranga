@@ -104,7 +104,7 @@ $routes->get('/suppression-commande', 'Commande::suppressionCommandeForm', ['as'
 //méthode de suppression en base de donnnée associée
 $routes->post('/suppression-commande', 'Commande::suppressionCommande', ['as' => 'Suppression_Commande']);
 
-$routes->get('/gestion-commande', 'Commande::suppressionCommande2', ['as' => 'Suppression_Commande2']);
+$routes->get('/suppression-commande', 'Commande::suppressionCommande2', ['as' => 'Suppression_Commande2']);
 
 
 #--------------------------------------------------------------------
