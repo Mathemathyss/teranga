@@ -30,7 +30,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                 <tr>
                     <th>Numéro Commande</th>
                     <th>infos client (N°client)</th>
-                    <th>Date et Heure Commande</th>
+                    <th>Date et Heure Commande(+livraison)</th>
                     <th>Plats Commandés (Quantité)</th>
                     <th>Lieu</th>
                     <th>Statut</th>
