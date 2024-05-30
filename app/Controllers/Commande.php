@@ -166,6 +166,8 @@ class Commande extends BaseController
 
         return redirect()->route('accueil');
     }
+
+    //E5 Modification suppression direct
     public function suppressionCommande2($COMMANDEID): RedirectResponse
     {
         //$data = $this->request->getVar();
