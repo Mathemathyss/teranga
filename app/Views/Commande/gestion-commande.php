@@ -41,11 +41,11 @@ $term = isset($termReserv) ? $_GET['search'] : '';
         foreach ($resultats as $commande) {
             $heure = $commande['DATE_HEURE'];
             $heurelivraison = ($commande['LIEU'] == 'A emporter') ? [date("Y-m-d H:i:s", strtotime('+2 hours', strtotime($heure)))] : '' ;
-            var_dump($heurelivraison);
+            //var_dump($heurelivraison);
             echo "<tr>
                     <td>{$commande['COMMANDEID']}</td>
                     <td>{$commande['NomPrenomReservation']}</td>
-                    <td>{$commande['DATE_HEURE']} + ()</td>
+                    <td>{$commande['DATE_HEURE']} + ($heurelivraison)</td>
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['LIEU']}</td>
                     <td>{$commande['STATUT']}</td>
