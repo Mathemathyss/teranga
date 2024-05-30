@@ -43,6 +43,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
                     <td>{$commande['NomPrenomReservation']}</td>
                     <td>{$commande['DATE_HEURE']}</td>
                     <td>{$commande['PlatsCommandes']}</td>
+                    <td>Lieu</td>
                     <td>{$commande['STATUT']}</td>
                     <td>
                     <a href='" . url_to('Modification_Commande_Form', $commande['COMMANDEID']) . "'><button>Modifier</button></a>
