@@ -13,7 +13,7 @@ class Commandes extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['RESERVATIONID', 'DATE_HEURE', 'STATUT'];
+    protected $allowedFields    = ['RESERVATIONID', 'DATE_HEURE', 'LIEU', 'STATUT'];
 
     // Dates
     protected $useTimestamps = false;
