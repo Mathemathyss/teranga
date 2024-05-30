@@ -168,12 +168,12 @@ class Commande extends BaseController
     }
     public function suppressionCommande2($COMMANDEID): RedirectResponse
     {
-        $data = $this->request->getVar();
+        //$data = $this->request->getVar();
         // var_dump($data);
         $detailsCommandeModel = new \App\Models\DetailsCommande();
-        $detailsCommandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+        $detailsCommandeModel->where('COMMANDEID', $COMMANDEID)->delete();
         $commandeModel = new \App\Models\Commandes();
-        $commandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+        $commandeModel->where('COMMANDEID', $COMMANDEID)->delete();
 
         return redirect()->route('accueil');
     }
