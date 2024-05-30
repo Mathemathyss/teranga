@@ -133,6 +133,7 @@ class Commande extends BaseController
             'COMMANDEID' => $commandeID,
             'RESERVATIONID' => $data['reservationID'],
             'DATE_HEURE' => date('Y-m-d H:i:s'), // Date et heure actuelles
+            'LIEU' => $data['lieu'],
             'STATUT' => $data['statut']
         ]);
         // Boucler sur les articles et quantités et insérer dans la table de détails de commande

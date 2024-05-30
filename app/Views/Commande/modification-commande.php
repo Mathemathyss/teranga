@@ -27,6 +27,11 @@
             </select>
         </label><br>
 
+        <label>Lieu de la commande: <select name="lieu">
+                <option value="Sur place" <?= ($commande_details['LIEU'] == 'Sur place') ? 'selected' : '' ?>>Sur place</option>
+                <option value="A emporter" <?= ($commande_details['LIEU'] == 'A emporter') ? 'selected' : '' ?>>A emporter</option>
+            </select></label><br>
+
         <!-- Champs dynamiques pour les articles et quantités -->
         <div id="articles-container">
             <?php foreach ($articles as $article) : ?>
