@@ -45,7 +45,7 @@ $term = isset($termReserv) ? $_GET['search'] : '';
             echo "<tr>
                     <td>{$commande['COMMANDEID']}</td>
                     <td>{$commande['NomPrenomReservation']}</td>
-                    <td>$heure</td>
+                    <td>$heure + ()</td>
                     <td>{$commande['PlatsCommandes']}</td>
                     <td>{$commande['LIEU']}</td>
                     <td>{$commande['STATUT']}</td>
