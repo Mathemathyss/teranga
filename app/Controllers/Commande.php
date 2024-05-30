@@ -50,6 +50,7 @@ class Commande extends BaseController
 
         // Récupérer les données du formulaire
         $reservationID = $this->request->getPost('reservationID');
+        $lieu = $this->request->getPost('lieu');
         $statut = $this->request->getPost('statut');
         $quantites = $this->request->getPost('quantites');
 
@@ -62,6 +63,7 @@ class Commande extends BaseController
         $commandeModel->insert([
             'RESERVATIONID' => $reservationID,
             'DATE_HEURE' => date('Y-m-d H:i:s'), // Date et heure actuelles
+            'LIEU' => $lieu,
             'STATUT' => $statut
         ]);
 

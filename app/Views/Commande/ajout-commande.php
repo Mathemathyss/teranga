@@ -20,6 +20,12 @@
                 <option value="Servie">Servie</option>
             </select></label><br>
 
+
+        <label>Lieu de la commande: <select name="lieu">
+                <option value="Sur place">Sur place</option>
+                <option value="A emporter">A emporter</option>
+            </select></label><br>
+
         <!-- Champs dynamiques pour les articles et quantités -->
         <div id="articles-container">
             <?php foreach ($articleList as $article) : ?>
