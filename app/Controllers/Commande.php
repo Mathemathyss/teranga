@@ -166,6 +166,17 @@ class Commande extends BaseController
 
         return redirect()->route('accueil');
     }
+    public function suppressionCommande2($commandeID): RedirectResponse
+    {
+        $data = $this->request->getVar();
+        // var_dump($data);
+        $detailsCommandeModel = new \App\Models\DetailsCommande();
+        $detailsCommandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+        $commandeModel = new \App\Models\Commandes();
+        $commandeModel->where('COMMANDEID', $data['commandeID'])->delete();
+
+        return redirect()->route('accueil');
+    }
 
     public function encaisserForm(): string
     {
